@@ -72,6 +72,22 @@ def generate_all_schedules():
     
     TIME_PERIODS = create_time_periods()
     
+    def is_adjacent_lecture(schedule_grid, day_idx, start_period, code_id):
+        """Check if there's already a lecture of the same course in adjacent time slots"""
+        # Check previous time slot
+        if start_period > 0:
+            prev_slot = schedule_grid[day_idx][start_period-1]
+            if prev_slot['type'] == 'LEC' and prev_slot['code'] == code_id:
+                return True
+                
+        # Check next time slot after the lecture block
+        if start_period + LECTURE_BLOCKS < len(TIME_PERIODS):
+            next_slot = schedule_grid[day_idx][start_period + LECTURE_BLOCKS]
+            if next_slot['type'] == 'LEC' and next_slot['code'] == code_id:
+                return True
+                
+        return False
+    
     # Read both templates
     template_dir = os.path.dirname(__file__)
     with open(os.path.join(template_dir, 'template.html'), 'r', encoding='utf-8') as f:
@@ -117,7 +133,7 @@ def generate_all_schedules():
             subject_colors = {}
             color_generator = create_course_color()
             
-            # Process section-specific subjects
+            # First schedule all labs since they're less flexible
             practical_subjects = section_subjects[section_subjects['P'] > 0]
             for _, subject in practical_subjects.iterrows():
                 code_id = str(subject['Course Code'])
@@ -166,8 +182,8 @@ def generate_all_schedules():
                             is_scheduled = True
                     try_count += 1
             
-            # Process lectures and tutorials
-            theory_subjects = section_subjects[section_subjects['P'] == 0]
+            # Now process all subjects that have lectures or tutorials
+            theory_subjects = section_subjects[(section_subjects['L'] > 0) | (section_subjects['T'] > 0)]
             for _, subject in theory_subjects.iterrows():
                 code_id = str(subject['Course Code'])
                 subj_name = str(subject['Course Name'])
@@ -200,7 +216,8 @@ def generate_all_schedules():
                                 if (start_period+i in teacher_bookings[instructor][day_idx] or 
                                     start_period+i in room_bookings[venue][day_idx] or
                                     schedule_grid[day_idx][start_period+i]['type'] is not None or
-                                    is_rest_period(TIME_PERIODS[start_period+i])):
+                                    is_rest_period(TIME_PERIODS[start_period+i]) or
+                                    is_adjacent_lecture(schedule_grid, day_idx, start_period, code_id)):
                                     is_available = False
                                     break
                             
