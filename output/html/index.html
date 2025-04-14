@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>College Timetables</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 30px;
+        background: #f0f2f5;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .dept-section {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .dept-title {
+        color: #1a237e;
+        font-size: 24px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #3f51b5;
+        padding-bottom: 10px;
+      }
+      .semester-grid {
+        display: grid;
+        gap: 20px;
+        padding: 10px 0;
+      }
+      .semester-group {
+        background: #e8eaf6;
+        padding: 15px;
+        border-radius: 8px;
+      }
+      .semester-group h3 {
+        color: #283593;
+        margin: 0 0 15px 0;
+        font-size: 18px;
+      }
+      .section-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+      }
+      .semester-link {
+        display: block;
+        padding: 12px;
+        background: white;
+        color: #3f51b5;
+        text-decoration: none;
+        border-radius: 6px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .semester-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background: #c5cae9;
+      }
+      .page-title {
+        text-align: center;
+        color: #1a237e;
+        margin-bottom: 40px;
+        font-size: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-title">College Timetables</h1>
+      
+        <div class="dept-section">
+            <h2 class="dept-title">CSE Department</h2>
+            <div class="semester-grid">
+        <div class="semester-group"><h3>Semester 2</h3>
+                        <a href="timetable_cse_semester_2_section_a.html" class="semester-link">
+                            Section A
+                        </a>
+                    
+                        <a href="timetable_cse_semester_2_section_b.html" class="semester-link">
+                            Section B
+                        </a>
+                    </div><div class="semester-group"><h3>Semester 4</h3>
+                        <a href="timetable_cse_semester_4_section_a.html" class="semester-link">
+                            Section A
+                        </a>
+                    
+                        <a href="timetable_cse_semester_4_section_b.html" class="semester-link">
+                            Section B
+                        </a>
+                    </div><div class="semester-group"><h3>Semester 6</h3>
+                        <a href="timetable_cse_semester_6_section_a.html" class="semester-link">
+                            Section A
+                        </a>
+                    
+                        <a href="timetable_cse_semester_6_section_b.html" class="semester-link">
+                            Section B
+                        </a>
+                    </div><div class="semester-group"><h3>Semester 8</h3>
+                        <a href="timetable_cse_semester_8.html" class="semester-link">
+                            Section None
+                        </a>
+                    </div></div></div>
+        <div class="dept-section">
+            <h2 class="dept-title">DSAI Department</h2>
+            <div class="semester-grid">
+        
+                    <a href="timetable_dsai_semester_2.html" class="semester-link">
+                        Semester 2
+                    </a>
+                
+                    <a href="timetable_dsai_semester_4.html" class="semester-link">
+                        Semester 4
+                    </a>
+                
+                    <a href="timetable_dsai_semester_6.html" class="semester-link">
+                        Semester 6
+                    </a>
+                </div></div>
+        <div class="dept-section">
+            <h2 class="dept-title">ECE Department</h2>
+            <div class="semester-grid">
+        
+                    <a href="timetable_ece_semester_2.html" class="semester-link">
+                        Semester 2
+                    </a>
+                
+                    <a href="timetable_ece_semester_4.html" class="semester-link">
+                        Semester 4
+                    </a>
+                
+                    <a href="timetable_ece_semester_6.html" class="semester-link">
+                        Semester 6
+                    </a>
+                
+                    <a href="timetable_ece_semester_8.html" class="semester-link">
+                        Semester 8
+                    </a>
+                </div></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Timetable</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f0f2f5;
+      }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .timetable-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .timetable-header h2 {
+        color: #1a237e;
+        margin: 0;
+        font-size: 24px;
+      }
+      .timestamp {
+        color: #666;
+        font-size: 0.9em;
+        margin-top: 5px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #e0e0e0;
+        padding: 12px;
+        text-align: center;
+      }
+      th {
+        background: #1a237e;
+        color: white;
+        font-weight: 500;
+      }
+      .break {
+        background: #eceff1;
+        color: #546e7a;
+        font-weight: bold;
+      }
+      .course-block {
+        padding: 10px;
+        border-radius: 6px;
+        margin: 5px;
+        transition: transform 0.2s;
+      }
+      .course-block:hover {
+        transform: scale(1.02);
+      }
+      .legend {
+        margin-top: 40px;
+        padding: 20px;
+        background: #f5f5f5;
+        border-radius: 8px;
+      }
+      .legend h3 {
+        color: #1a237e;
+        margin-top: 0;
+      }
+      .legend-color {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        border-radius: 4px;
+      }
+      .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #3f51b5;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      @media print {
+        body {
+          background: white;
+        }
+        .container {
+          box-shadow: none;
+        }
+        .back-link {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="index.html" class="back-link">← Back to Index</a>
+      
+                <div class="timetable-header">
+                    <h2>CSE Department - Semester 4 - Section A</h2>
+                    <p class="timestamp">Generated: 14-04-2025 07:10 PM</p>
+                </div>
+                <table>
+            <tr><th>Day</th><th>09:00 AM<br>to<br>09:30 AM</th><th>09:30 AM<br>to<br>10:00 AM</th><th>10:00 AM<br>to<br>10:30 AM</th><th>10:30 AM<br>to<br>11:00 AM</th><th>11:00 AM<br>to<br>11:30 AM</th><th>11:30 AM<br>to<br>12:00 PM</th><th>12:00 PM<br>to<br>12:30 PM</th><th>12:30 PM<br>to<br>01:00 PM</th><th>01:00 PM<br>to<br>01:30 PM</th><th>01:30 PM<br>to<br>02:00 PM</th><th>02:00 PM<br>to<br>02:30 PM</th><th>02:30 PM<br>to<br>03:00 PM</th><th>03:00 PM<br>to<br>03:30 PM</th><th>03:30 PM<br>to<br>04:00 PM</th><th>04:00 PM<br>to<br>04:30 PM</th><th>04:30 PM<br>to<br>05:00 PM</th><th>05:00 PM<br>to<br>05:30 PM</th><th>05:30 PM<br>to<br>06:00 PM</th><th>06:00 PM<br>to<br>06:30 PM</th></tr>
+<tr><td><b>Monday</b></td><td></td><td></td><td colspan="2" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>CS204 TUT</strong><br>
+                                    Room: C104<br>
+                                    Dr. Suvadeep
+                                </div>
+                            </td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFCFF4">
+                                    <strong>HS205 LEC</strong><br>
+                                    Room: C004<br>
+                                    Dr. Jolly Thomas, IIT Dharwad
+                                </div>
+                            </td><td colspan="4" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>CS204 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Suvadeep
+                                </div>
+                            </td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6CFFF">
+                                    <strong>CS301 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Vivekraj
+                                </div>
+                            </td><td></td><td></td></tr>
+<tr><td><b>Tuesday</b></td><td colspan="2" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFEFCF">
+                                    <strong>MA202 TUT</strong><br>
+                                    Room: C104<br>
+                                    Dr. Anand Barangi
+                                </div>
+                            </td><td></td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>CS206 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Pavan
+                                </div>
+                            </td><td colspan="4" class="break">BREAK</td><td></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFEFCF">
+                                    <strong>MA202 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Anand Barangi
+                                </div>
+                            </td><td colspan="4" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFD6E0">
+                                    <strong>CS310 LAB</strong><br>
+                                    Room: C104<br>
+                                    Dr. Pramod
+                                </div>
+                            </td></tr>
+<tr><td><b>Wednesday</b></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFCFF4">
+                                    <strong>HS205 LEC</strong><br>
+                                    Room: C004<br>
+                                    Dr. Jolly Thomas, IIT Dharwad
+                                </div>
+                            </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>CS206 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Pavan
+                                </div>
+                            </td><td colspan="4" class="break">BREAK</td><td></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>CS206 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Pavan
+                                </div>
+                            </td><td></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFEFCF">
+                                    <strong>MA202 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Anand Barangi
+                                </div>
+                            </td></tr>
+<tr><td><b>Thursday</b></td><td></td><td></td><td colspan="2" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>CS206 TUT</strong><br>
+                                    Room: C104<br>
+                                    Dr. Pavan
+                                </div>
+                            </td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>CS204 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Suvadeep
+                                </div>
+                            </td><td colspan="4" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6CFFF">
+                                    <strong>CS301 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Vivekraj
+                                </div>
+                            </td><td></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>CS204 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Suvadeep
+                                </div>
+                            </td><td></td></tr>
+<tr><td><b>Friday</b></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6CFFF">
+                                    <strong>CS301 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Vivekraj
+                                </div>
+                            </td><td colspan="1" class="break">BREAK</td><td colspan="2" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6CFFF">
+                                    <strong>CS301 TUT</strong><br>
+                                    Room: C104<br>
+                                    Dr. Vivekraj
+                                </div>
+                            </td><td></td><td colspan="4" class="break">BREAK</td><td></td><td></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFEFCF">
+                                    <strong>MA202 LEC</strong><br>
+                                    Room: C104<br>
+                                    Dr. Anand Barangi
+                                </div>
+                            </td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFCFF4">
+                                    <strong>HS205 LEC</strong><br>
+                                    Room: C004<br>
+                                    Dr. Jolly Thomas, IIT Dharwad
+                                </div>
+                            </td></tr>
+</table>
+<div class="legend"><h3>Course Legend</h3>
+<table>
+<tr><th>Course Code</th><th>Color</th><th>Course Name</th><th>Faculty</th></tr>
+
+                <tr>
+                    <td><strong>CS310</strong></td>
+                    <td><div class="legend-color" style="background-color: #FFD6E0"></div></td>
+                    <td>Database Management Systems</td>
+                    <td>Dr. Pramod</td>
+                </tr>
+                <tr>
+                    <td><strong>MA202</strong></td>
+                    <td><div class="legend-color" style="background-color: #FFEFCF"></div></td>
+                    <td>Linear Algebra</td>
+                    <td>Dr. Anand Barangi</td>
+                </tr>
+                <tr>
+                    <td><strong>CS206</strong></td>
+                    <td><div class="legend-color" style="background-color: #D6FFCF"></div></td>
+                    <td>Theory of Computing</td>
+                    <td>Dr. Pavan</td>
+                </tr>
+                <tr>
+                    <td><strong>CS204</strong></td>
+                    <td><div class="legend-color" style="background-color: #CFFEFF"></div></td>
+                    <td>Operating Systems</td>
+                    <td>Dr. Suvadeep</td>
+                </tr>
+                <tr>
+                    <td><strong>CS301</strong></td>
+                    <td><div class="legend-color" style="background-color: #D6CFFF"></div></td>
+                    <td>Software Engineering</td>
+                    <td>Dr. Vivekraj</td>
+                </tr>
+                <tr>
+                    <td><strong>HS205</strong></td>
+                    <td><div class="legend-color" style="background-color: #FFCFF4"></div></td>
+                    <td>Ethics</td>
+                    <td>Dr. Jolly Thomas, IIT Dharwad</td>
+                </tr></table></div>
+
+    </div>
+  </body>
+</html>

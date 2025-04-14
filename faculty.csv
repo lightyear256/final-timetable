@@ -1,0 +1,146 @@
+Faculty Name,Course Code,Course Name,Semester,Branch
+Dr. Sibasankar Padhy,MA163,Linear Algebra,2,DSAI
+Dr. Dibyajyoti Guha,CS162,Optimization,2,DSAI
+Dr. Manjunath,CS164,Computer Architecture,2,DSAI
+Dr. Rajesh N S,HS161,English Language and Communication,2,DSAI
+Dr. Sunil Saumya,CS163,Data Structures and Algorithms,2,DSAI
+Dr. Siddharth R.,DS164,Data Curation Techniques,2,DSAI
+Dr. Abdul Wahid,DS165,Data Science with Python,2,DSAI
+Dr. Prakash Pawar,EC166,Introduction to Digital VLSI Design,2,DSAI
+Mr. Ram Subramanian & Mr. Sasi Kumar Sundara Rajan,HS167,Industry Insights Program Part 1,2,DSAI
+Dr. Aswath Babu & Prof. Ravi Shankar,PH168,Principles of Quantum Physics,2,DSAI
+Dr. Shirshendu Layek,CS169,Linux for Engineers,2,DSAI
+Dr. Prabhu Prasad BM,HS170,Photography101,2,DSAI
+Prof. Chachadi and Dr. Chandrika K,HS171,Introduction to Holistic Personality Development,2,DSAI
+Dr. Sandesh P,AS172,Visual Design – Principles and Application in Product Communication,2,DSAI
+Dr. Sandesh P,ASD151,Introduction to Design,2,DSAI
+Dr. Siddharth,HS151,Introduction to Personal Finance,2,DSAI
+Dr. Jagadeesha Bhat,EC173,Introduction to Internet of Things,2,DSAI
+Dr. Ramesh Athe,DS174,Computer Intensive Statistical Methods,2,DSAI
+Dr. Pramod Y,CS175,Concurrency and Computation,2,DSAI
+
+Dr. Navyashree,HS206,Industrial Social Psychology,4,DSAI
+Dr. Manjunath K V,CS204,Operating Systems,4,DSAI
+Dr. Animesh Chaturvedi,DS204,Software Engineering and Services,4,DSAI
+Dr. Shirshendu and Dr. Utkarsh Khaire,CS310,Database Management System,4,DSAI
+Mr. Manmohan Singh (Course Coordinator: Dr. Rajendra Hegadi),DS205,Global Business Perspectives,4,DSAI
+Dr. Sunil S,CS206,Large Language Models,4,DSAI
+
+Dr. Animesh Chaturvedi,DS309,Cloud Computing,6,DSAI
+Dr. Utkarsh Khaire,DS306,Financial Data Analytics,6,DSAI
+Mr. Ram Subramanian (Course Coordinator: Dr. Manjunath KV),DS307,Innovation and Entrepreneurship,6,DSAI
+Dr. Abdul Wahid and Dr. Rajendra Hegadi,DS308,Data Security and Privacy,6,DSAI
+Dr. Shirshendu,DS399,Mini Project-I,6,DSAI
+Dr. Chinmayanand,CS464,Deep Learning for Computer Vision,6,DSAI
+Dr. Sunil S,CS465,Large Language Models,6,DSAI
+Dr. Krishnendu,CS458,Natural Language Processing,6,DSAI
+Prof. SRM Prasanna,CS466,Deep Speech Processing,6,DSAI
+Dr. Rajendra H,CS455,Blockchain Technology,6,DSAI
+Dr. Jagadeesha R Bhat,EC361,Introduction to 5G Network,6,DSAI
+Dr. Pavan,CS467,Model Checking,6,DSAI
+Dr. Aswath B,PH468,Quantum Communication,6,DSAI
+Dr. Manish M,CS469,Quantum HPC and AI,6,DSAI
+Dr. Sandesh P,AS470,Design Thinking and Innovation,6,DSAI
+
+Dr. Rajendra Hegadi,DS499,Major Project III,8,DSAI
+
+Dr. Somen Bhattacharjee,MA163,Linear Algebra,2,ECE
+Dr. Dibyajyoti Guha,CS162,Optimization,2,ECE
+Dr. Jagadish D N,CS164,Computer Architecture,2,ECE
+Dr. Rajesh N S,HS161,English Language and Communication,2,ECE
+Dr. Prabhu Prasad,CS163,Data Structures and Algorithms,2,ECE
+Dr. Sibasankar Padhy,EC201,Network Analysis,2,ECE
+Dr. Abdul Wahid,DS165,Data Science with Python,2,ECE
+Dr. Prakash Pawar,EC166,Introduction to Digital VLSI Design,2,ECE
+Mr. Ram Subramanian & Mr. Sasi Kumar Sundara Rajan,HS167,Industry Insights Program Part 1,2,ECE
+Dr. Aswath Babu & Prof. Ravi Shankar,PH168,Principles of Quantum Physics,2,ECE
+Dr. Shirshendu Layek,CS169,Linux for Engineers,2,ECE
+Dr. Prabhu Prasad BM,HS170,Photography101,2,ECE
+Prof. Chachadi and Dr. Chandrika K,HS171,Introduction to Holistic Personality Development,2,ECE
+Dr. Sandesh P,AS172,Visual Design – Principles and Application in Product Communication,2,ECE
+Dr. Sandesh P,ASD151,Introduction to Design,2,ECE
+Dr. Siddharth,HS151,Introduction to Personal Finance,2,ECE
+Dr. Jagadeesha Bhat,EC173,Introduction to Internet of Things,2,ECE
+Dr. Ramesh Athe,DS174,Computer Intensive Statistical Methods,2,ECE
+Dr. Pramod Y,CS175,Concurrency and Computation,2,ECE
+
+Dr. Rajib Sharma and Dr. Rajesh Kumar,MA208,Probability and Random Processes,4,ECE
+Dr. Pankaj Kumar,EC205,Control Systems,4,ECE
+Dr. Prakash Pawar,EC310,Embedded Systems Design,4,ECE
+Dr. Somen Bhattacharjee and Dr. Jagadish D N,EC204,Analog and Digital Communication,4,ECE
+Dr. Anushree K,HS204,Economics,4,ECE
+Dr. Jolly Thomas,HS205,Ethics,4,ECE
+Dr. Sunil S,CS206,Large Language Models,4,ECE
+
+Dr. Rajib Sharma and Dr. Rao,EC307,Wireless Communication,6,ECE
+Dr. Chinmayanand,CS464,Deep Learning for Computer Vision,6,ECE
+Dr. Sunil S,CS465,Large Language Models,6,ECE
+Dr. Krishnendu,CS458,Natural Language Processing,6,ECE
+Dr. Rajesh Kumar,EC471,CMOS RF Circuit Design,6,ECE
+Prof. SRM Prasanna,CS466,Deep Speech Processing,6,ECE
+Dr. Rajendra H,CS455,Blockchain Technology,6,ECE
+Dr. Jagadeesha R Bhat,EC361,Introduction to 5G Network,6,ECE
+Dr. Pavan,CS467,Model Checking,6,ECE
+Dr. Aswath B,PH468,Quantum Communication,6,ECE
+Dr. Manish M,CS469,Quantum HPC and AI,6,ECE
+Dr. Sandesh P,AS470,Design Thinking and Innovation,6,ECE
+Dr. Vivekraj V K,CS472,Computer Graphics,6,ECE
+Dr. Deepak K T,CS307,Machine Learning,6,ECE
+Dr. Malay,CS473,Virtualization and Cloud Computing,6,ECE
+Dr. Sunil C K,DS474,Data Analytics and Visualization,6,ECE
+Dr. Ramesh Athe,DS351,Statistics for Health Technology,6,ECE
+Dr. Girish G N,CS475,Medical Image Analysis,6,ECE
+Dr. Sunil Kumar PV,CS472,Bioinformatics,6,ECE
+Dr. Pankaj Kumar,EC399,Mini Project-II,6,ECE
+
+Dr. Rajesh Kumar,EC499,Major Project,8,ECE
+
+Dr. Dibyajyoti Guha,CS162,Optimization,2,CSE
+Dr. Prabhu Prasad,CS164,Computer Architecture,2,CSE
+Dr. Sibasankar Padhy,MA163,Linear Algebra,2,CSE
+Dr. C. B. Akki,CS163,Data Structures and Algorithms,2,CSE
+Dr. Anushree Kini and Dr. Deepak K T,HS204,Economics,2,CSE
+Dr. Animesh Roy,CS165,Mathematical Foundations of Computing,2,CSE
+Dr. Abdul Wahid,DS165,Data Science with Python,2,CSE
+Dr. Prakash Pawar,EC166,Introduction to Digital VLSI Design,2,CSE
+Mr. Ram Subramanian & Mr. Sasi Kumar Sundara Rajan,HS167,Industry Insights Program Part 1,2,CSE
+Dr. Shirshendu Layek,CS169,Linux for Engineers,2,CSE
+Dr. Prabhu Prasad BM,HS170,Photography101,2,CSE
+Prof. Chachadi and Dr. Chandrika K,HS171,Introduction to Holistic Personality Development,2,CSE
+Dr. Sandesh P,AS172,Visual Design-PAPC,2,CSE
+
+Dr. Pavan,CS206,Theory of Computation,4,CSE
+Dr. Sunil C K,CS206,Theory of Computation,4,CSE
+Dr. Anand Barangi,MA202,Linear Algebra,4,CSE
+Dr. Vivekraj V K,CS301,Software Engineering,4,CSE
+Dr. Sunil Kumar P V,CS301,Software Engineering,4,CSE
+Dr. Suvadip Hazra,CS204,Operating System,4,CSE
+Dr. Malay and Dr. Dibyajyothi,CS204,Operating System,4,CSE
+Dr. Pramod Yelmewad,CS310,Database Management Systems,4,CSE
+Dr. Abdul,CS310,Database Management Systems,4,CSE
+Dr. Jolly Thomas,HS205,Ethics,4,CSE
+
+Dr. Girish G N and Dr. Krishnendu Ghosh,CS307,Machine Learning,6,CSE
+Dr. Chinmayanand,CS471,Deep Computer Vision,6,CSE
+Dr. Sunil S,CS465,Large Language Models,6,CSE
+Dr. Krishnendu,CS458,Natural Language Processing,6,CSE
+Dr. Pankaj Kumar and Dr. Rajesh Kumar,EC471,CMOS RF Circuit Design,6,CSE
+Prof. SRM Prasanna,CS466,Deep Speech Processing,6,CSE
+Dr. Rajendra H,CS455,Blockchain Technology,6,CSE
+Dr. Jagadeesha R Bhat,EC361,Introduction to 5G Network,6,CSE
+Dr. Pavan,CS467,Model Checking,6,CSE
+Dr. Aswath B,PH468,Quantum Communication,6,CSE
+Dr. Manish M,CS469,Quantum HPC and AI,6,CSE
+Dr. Sandesh P,AS470,Design Thinking and Innovation,6,CSE
+Mr. Jagadeesh K (Dr. Sibasankar Padhy),EC472,Automotive Embedded and Multimedia Systems,6,CSE
+Dr. Somen,EC473,Microwave Engineering,6,CSE
+Dr. Vivekraj V K,CS462,Computer Graphics,6,CSE
+Dr. Deepak K T,CS474,Machine Learning,6,CSE
+Dr. Malay,CS473,Virtualization and Cloud Computing,6,CSE
+Dr. Sunil C K,DS474,Data Analytics and Visualization,6,CSE
+Dr. Ramesh Athe,DS475,Statistics for Health Technology,6,CSE
+Dr. Girish G N,CS475,Medical Image Analysis,6,CSE
+Dr. Sunil Kumar PV,CS472,Bioinformatics,6,CSE
+Dr. Pramod Yelmewad and Dr. Animesh Roy,CS399,Mini-Project II,6,CSE
+
+Dr. Pramod Yelmewad and Dr. Animesh Roy,CS499,Major Project,8,CSE

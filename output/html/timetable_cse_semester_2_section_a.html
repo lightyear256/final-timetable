@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Timetable</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f0f2f5;
+      }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .timetable-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .timetable-header h2 {
+        color: #1a237e;
+        margin: 0;
+        font-size: 24px;
+      }
+      .timestamp {
+        color: #666;
+        font-size: 0.9em;
+        margin-top: 5px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #e0e0e0;
+        padding: 12px;
+        text-align: center;
+      }
+      th {
+        background: #1a237e;
+        color: white;
+        font-weight: 500;
+      }
+      .break {
+        background: #eceff1;
+        color: #546e7a;
+        font-weight: bold;
+      }
+      .course-block {
+        padding: 10px;
+        border-radius: 6px;
+        margin: 5px;
+        transition: transform 0.2s;
+      }
+      .course-block:hover {
+        transform: scale(1.02);
+      }
+      .legend {
+        margin-top: 40px;
+        padding: 20px;
+        background: #f5f5f5;
+        border-radius: 8px;
+      }
+      .legend h3 {
+        color: #1a237e;
+        margin-top: 0;
+      }
+      .legend-color {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        border-radius: 4px;
+      }
+      .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #3f51b5;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      @media print {
+        body {
+          background: white;
+        }
+        .container {
+          box-shadow: none;
+        }
+        .back-link {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="index.html" class="back-link">← Back to Index</a>
+      
+                <div class="timetable-header">
+                    <h2>CSE Department - Semester 2 - Section A</h2>
+                    <p class="timestamp">Generated: 14-04-2025 07:10 PM</p>
+                </div>
+                <table>
+            <tr><th>Day</th><th>09:00 AM<br>to<br>09:30 AM</th><th>09:30 AM<br>to<br>10:00 AM</th><th>10:00 AM<br>to<br>10:30 AM</th><th>10:30 AM<br>to<br>11:00 AM</th><th>11:00 AM<br>to<br>11:30 AM</th><th>11:30 AM<br>to<br>12:00 PM</th><th>12:00 PM<br>to<br>12:30 PM</th><th>12:30 PM<br>to<br>01:00 PM</th><th>01:00 PM<br>to<br>01:30 PM</th><th>01:30 PM<br>to<br>02:00 PM</th><th>02:00 PM<br>to<br>02:30 PM</th><th>02:30 PM<br>to<br>03:00 PM</th><th>03:00 PM<br>to<br>03:30 PM</th><th>03:30 PM<br>to<br>04:00 PM</th><th>04:00 PM<br>to<br>04:30 PM</th><th>04:30 PM<br>to<br>05:00 PM</th><th>05:00 PM<br>to<br>05:30 PM</th><th>05:30 PM<br>to<br>06:00 PM</th><th>06:00 PM<br>to<br>06:30 PM</th></tr>
+<tr><td><b>Monday</b></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFCFF4">
+                                    <strong>B1 LEC</strong><br>
+                                    Room: C204/C202/C203<br>
+                                    Dr. Sandesh P/Dr. Siddharth/Dr Jagadeesha Bhat
+                                </div>
+                            </td><td colspan="1" class="break">BREAK</td><td></td><td colspan="2" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>CS163 TUT</strong><br>
+                                    Room: C202<br>
+                                    Dr. Prabhu Prasad
+                                </div>
+                            </td><td colspan="4" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #E8D0A9">
+                                    <strong>B2 LEC</strong><br>
+                                    Room: C202/C203/C204<br>
+                                    Dr Pramod Y/Dr Ramesh Athe/Mr. Ram Subramanian & Mr. Sasi Kumar Sundara Rajan
+                                </div>
+                            </td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>CS162 LEC</strong><br>
+                                    Room: C004<br>
+                                    Dr. Dibyajyothi
+                                </div>
+                            </td><td></td><td></td></tr>
+<tr><td><b>Tuesday</b></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6CFFF">
+                                    <strong>HS204 / HS153 LEC</strong><br>
+                                    Room: C202/C004<br>
+                                    Dr. Anusree Kini
+                                </div>
+                            </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6CFFF">
+                                    <strong>HS204 / HS153 LEC</strong><br>
+                                    Room: C202/C004<br>
+                                    Dr. Anusree Kini
+                                </div>
+                            </td><td colspan="4" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>CS162 LEC</strong><br>
+                                    Room: C004<br>
+                                    Dr. Dibyajyothi
+                                </div>
+                            </td><td></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>CS163 LEC</strong><br>
+                                    Room: C202<br>
+                                    Dr. Prabhu Prasad
+                                </div>
+                            </td><td></td></tr>
+<tr><td><b>Wednesday</b></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6CFFF">
+                                    <strong>HS204 / HS153 LEC</strong><br>
+                                    Room: C202/C004<br>
+                                    Dr. Anusree Kini
+                                </div>
+                            </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #E8D0A9">
+                                    <strong>B2 LEC</strong><br>
+                                    Room: C202/C203/C204<br>
+                                    Dr Pramod Y/Dr Ramesh Athe/Mr. Ram Subramanian & Mr. Sasi Kumar Sundara Rajan
+                                </div>
+                            </td><td colspan="4" class="break">BREAK</td><td colspan="4" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFEFCF">
+                                    <strong>CS165 LAB</strong><br>
+                                    Room: C202<br>
+                                    Dr. Animesh Roy
+                                </div>
+                            </td><td></td><td colspan="2" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>CS162 TUT</strong><br>
+                                    Room: C004<br>
+                                    Dr. Dibyajyothi
+                                </div>
+                            </td><td></td></tr>
+<tr><td><b>Thursday</b></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>CS163 LEC</strong><br>
+                                    Room: C202<br>
+                                    Dr. Prabhu Prasad
+                                </div>
+                            </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFCFF4">
+                                    <strong>B1 LEC</strong><br>
+                                    Room: C204/C202/C203<br>
+                                    Dr. Sandesh P/Dr. Siddharth/Dr Jagadeesha Bhat
+                                </div>
+                            </td><td colspan="4" class="break">BREAK</td><td></td><td></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #E8D0A9">
+                                    <strong>B2 LEC</strong><br>
+                                    Room: C202/C203/C204<br>
+                                    Dr Pramod Y/Dr Ramesh Athe/Mr. Ram Subramanian & Mr. Sasi Kumar Sundara Rajan
+                                </div>
+                            </td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>CS162 LEC</strong><br>
+                                    Room: C004<br>
+                                    Dr. Dibyajyothi
+                                </div>
+                            </td></tr>
+<tr><td><b>Friday</b></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>CS163 LEC</strong><br>
+                                    Room: C202<br>
+                                    Dr. Prabhu Prasad
+                                </div>
+                            </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFCFF4">
+                                    <strong>B1 LEC</strong><br>
+                                    Room: C204/C202/C203<br>
+                                    Dr. Sandesh P/Dr. Siddharth/Dr Jagadeesha Bhat
+                                </div>
+                            </td><td colspan="4" class="break">BREAK</td><td colspan="2" class="timetable-cell">
+                                <div class="course-block" style="background-color: #E8D0A9">
+                                    <strong>B2 TUT</strong><br>
+                                    Room: C202/C203/C204<br>
+                                    Dr Pramod Y/Dr Ramesh Athe/Mr. Ram Subramanian & Mr. Sasi Kumar Sundara Rajan
+                                </div>
+                            </td><td colspan="2" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFCFF4">
+                                    <strong>B1 TUT</strong><br>
+                                    Room: C204/C202/C203<br>
+                                    Dr. Sandesh P/Dr. Siddharth/Dr Jagadeesha Bhat
+                                </div>
+                            </td><td colspan="4" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFD6E0">
+                                    <strong>CS164 LAB</strong><br>
+                                    Room: C202<br>
+                                    Prof. CB Akki
+                                </div>
+                            </td></tr>
+</table>
+<div class="legend"><h3>Course Legend</h3>
+<table>
+<tr><th>Course Code</th><th>Color</th><th>Course Name</th><th>Faculty</th></tr>
+
+                <tr>
+                    <td><strong>CS164</strong></td>
+                    <td><div class="legend-color" style="background-color: #FFD6E0"></div></td>
+                    <td>Data Structures & Algorithms</td>
+                    <td>Prof. CB Akki</td>
+                </tr>
+                <tr>
+                    <td><strong>CS165</strong></td>
+                    <td><div class="legend-color" style="background-color: #FFEFCF"></div></td>
+                    <td>Mathematical foundations of Computing</td>
+                    <td>Dr. Animesh Roy</td>
+                </tr>
+                <tr>
+                    <td><strong>CS162</strong></td>
+                    <td><div class="legend-color" style="background-color: #D6FFCF"></div></td>
+                    <td>Optimization</td>
+                    <td>Dr. Dibyajyothi</td>
+                </tr>
+                <tr>
+                    <td><strong>CS163</strong></td>
+                    <td><div class="legend-color" style="background-color: #CFFEFF"></div></td>
+                    <td>Computer Architecture</td>
+                    <td>Dr. Prabhu Prasad</td>
+                </tr>
+                <tr>
+                    <td><strong>HS204 / HS153</strong></td>
+                    <td><div class="legend-color" style="background-color: #D6CFFF"></div></td>
+                    <td>Economics (HSS / I&E)</td>
+                    <td>Dr. Anusree Kini</td>
+                </tr>
+                <tr>
+                    <td><strong>B1</strong></td>
+                    <td><div class="legend-color" style="background-color: #FFCFF4"></div></td>
+                    <td>Introduction to Design/Introduction to Personal Finance/Introduction to Internet of Things</td>
+                    <td>Dr. Sandesh P/Dr. Siddharth/Dr Jagadeesha Bhat</td>
+                </tr>
+                <tr>
+                    <td><strong>B2</strong></td>
+                    <td><div class="legend-color" style="background-color: #E8D0A9"></div></td>
+                    <td>Concurrency and Computation/Computer Intensive Statistical Methods/Industry Insights Program Part 1</td>
+                    <td>Dr Pramod Y/Dr Ramesh Athe/Mr. Ram Subramanian & Mr. Sasi Kumar Sundara Rajan</td>
+                </tr></table></div>
+
+    </div>
+  </body>
+</html>
