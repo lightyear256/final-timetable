@@ -139,7 +139,8 @@ def generate_all_schedules():
                 code_id = str(subject['Course Code'])
                 subj_name = str(subject['Course Name'])
                 instructor = str(subject['Faculty'])
-                venue = str(subject['Classroom'])
+                regular_venue = str(subject['Classroom'])
+                lab_venue = str(subject['Lab_room']) if pd.notna(subject['Lab_room']) else regular_venue
                 practical_hours = int(subject['P'])
                 
                 # Assign a color to this course if not already assigned
@@ -148,8 +149,8 @@ def generate_all_schedules():
                 
                 if instructor not in teacher_bookings:
                     teacher_bookings[instructor] = {day_idx: set() for day_idx in range(len(WEEKDAYS))}
-                if venue not in room_bookings:
-                    room_bookings[venue] = {day_idx: set() for day_idx in range(len(WEEKDAYS))}
+                if lab_venue not in room_bookings:
+                    room_bookings[lab_venue] = {day_idx: set() for day_idx in range(len(WEEKDAYS))}
                 
                 # Schedule labs - regardless of P value (2 or more), schedule only one 2-hour lab session per week
                 is_scheduled = False
@@ -163,22 +164,22 @@ def generate_all_schedules():
                         is_available = True
                         for i in range(LAB_BLOCKS):
                             if (start_period+i in teacher_bookings[instructor][day_idx] or 
-                                start_period+i in room_bookings[venue][day_idx] or
+                                start_period+i in room_bookings[lab_venue][day_idx] or
                                 schedule_grid[day_idx][start_period+i]['type'] is not None or
                                 is_rest_period(TIME_PERIODS[start_period+i])):
                                 is_available = False
                                 break
                         
                         if is_available:
-                            # Mark professor and classroom as busy
+                            # Mark professor and lab classroom as busy
                             for i in range(LAB_BLOCKS):
                                 teacher_bookings[instructor][day_idx].add(start_period+i)
-                                room_bookings[venue][day_idx].add(start_period+i)
+                                room_bookings[lab_venue][day_idx].add(start_period+i)
                                 schedule_grid[day_idx][start_period+i]['type'] = 'LAB'
                                 schedule_grid[day_idx][start_period+i]['code'] = code_id if i == 0 else ''
                                 schedule_grid[day_idx][start_period+i]['name'] = subj_name if i == 0 else ''
                                 schedule_grid[day_idx][start_period+i]['faculty'] = instructor if i == 0 else ''
-                                schedule_grid[day_idx][start_period+i]['classroom'] = venue if i == 0 else ''
+                                schedule_grid[day_idx][start_period+i]['classroom'] = lab_venue if i == 0 else ''  # Use lab venue for practical sessions
                             is_scheduled = True
                     try_count += 1
             
