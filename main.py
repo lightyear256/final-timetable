@@ -193,7 +193,13 @@ def generate_all_schedules():
                 tutorial_hours = int(subject['T']) if pd.notna(subject['T']) else 0
                 
                 # For 3-hour lecture courses, schedule exactly 2 lectures of 1.5 hours each
-                num_lectures = 2 if lecture_hours == 3 else lecture_hours
+                # For 6-hour lecture courses, schedule exactly 4 lectures of 1.5 hours each
+                if lecture_hours == 3:
+                    num_lectures = 2
+                elif lecture_hours == 6:
+                    num_lectures = 4
+                else:
+                    num_lectures = lecture_hours
                 
                 # Assign a color to this course if not already assigned
                 if code_id not in subject_colors:
