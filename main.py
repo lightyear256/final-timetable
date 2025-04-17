@@ -192,6 +192,9 @@ def generate_all_schedules():
                 lecture_hours = int(subject['L']) if pd.notna(subject['L']) else 0
                 tutorial_hours = int(subject['T']) if pd.notna(subject['T']) else 0
                 
+                # For 3-hour lecture courses, schedule exactly 2 lectures of 1.5 hours each
+                num_lectures = 2 if lecture_hours == 3 else lecture_hours
+                
                 # Assign a color to this course if not already assigned
                 if code_id not in subject_colors:
                     subject_colors[code_id] = {"color": next(color_generator), "name": subj_name, "faculty": instructor}
@@ -201,8 +204,8 @@ def generate_all_schedules():
                 if venue not in room_bookings:
                     room_bookings[venue] = {day_idx: set() for day_idx in range(len(WEEKDAYS))}
                 
-                # Schedule lectures (1.5 hours)
-                for _ in range(lecture_hours):
+                # Schedule lectures (1.5 hours each)
+                for _ in range(num_lectures):
                     is_scheduled = False
                     try_count = 0
                     while not is_scheduled and try_count < 1000:
