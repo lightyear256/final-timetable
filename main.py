@@ -341,7 +341,31 @@ def generate_all_schedules():
             
             dept_content += '</table>\n'
             
-            # Add legend with improved formatting
+            # Add LTPSC Legend first
+            dept_content += '<div class="legend"><h3>LTPSC Information</h3>\n<table>\n'
+            dept_content += '<tr><th>Course Code</th><th>L</th><th>T</th><th>P</th><th>S</th><th>C</th></tr>\n'
+            
+            for code_id in subject_colors.keys():
+                course_info = section_subjects[section_subjects['Course Code'] == code_id].iloc[0]
+                l_hours = int(course_info['L']) if pd.notna(course_info['L']) else 0
+                t_hours = int(course_info['T']) if pd.notna(course_info['T']) else 0
+                p_hours = int(course_info['P']) if pd.notna(course_info['P']) else 0
+                s_hours = int(course_info['S']) if pd.notna(course_info['S']) else 0
+                credits = int(course_info['C']) if pd.notna(course_info['C']) else 0
+                
+                dept_content += f'''
+                <tr>
+                    <td><strong>{code_id}</strong></td>
+                    <td>{l_hours}</td>
+                    <td>{t_hours}</td>
+                    <td>{p_hours}</td>
+                    <td>{s_hours}</td>
+                    <td>{credits}</td>
+                </tr>'''
+            
+            dept_content += '</table></div>\n'
+            
+            # Add Course Legend after LTPSC
             dept_content += '<div class="legend"><h3>Course Legend</h3>\n<table>\n'
             dept_content += '<tr><th>Course Code</th><th>Color</th><th>Course Name</th><th>Faculty</th></tr>\n'
             
