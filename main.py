@@ -21,6 +21,52 @@ VISUAL_PALETTE = [
 # Add sections constant
 CSE_SECTIONS = ['A', 'B']
 
+# Global time periods
+TIME_PERIODS = []
+
+# Global faculty schedule tracking
+faculty_schedule = {}
+
+def initialize_time_periods():
+    global TIME_PERIODS
+    TIME_PERIODS = create_time_periods()
+
+def clean_faculty_name(name):
+    """Clean and standardize faculty names"""
+    if pd.isna(name):
+        return "TBA"
+    name = str(name).strip()
+    # Handle multiple faculty names (take the first one)
+    if '/' in name:
+        name = name.split('/')[0].strip()
+    if '&' in name:
+        name = name.split('&')[0].strip()
+    if '(' in name:
+        name = name.split('(')[0].strip()
+    if 'and' in name.lower():
+        name = name.split('and')[0].strip()
+    return name
+
+def initialize_faculty_schedule():
+    """Initialize empty schedule for all faculty members with improved name handling"""
+    global faculty_schedule
+    faculty_schedule.clear()
+    
+    # Read faculty data
+    faculty_df = pd.read_csv('faculty.csv')
+    combined_df = pd.read_excel('combined2.xlsx')
+    
+    # Clean and standardize faculty names
+    all_faculty = set(clean_faculty_name(name) for name in faculty_df['Faculty Name'].unique())
+    all_faculty.update(clean_faculty_name(name) for name in combined_df['Faculty'].unique())
+    
+    # Remove empty or invalid names
+    all_faculty = {name for name in all_faculty if name and name != "TBA"}
+    
+    # Initialize schedule for each faculty member
+    for faculty in all_faculty:
+        faculty_schedule[faculty] = {day_idx: set() for day_idx in range(len(WEEKDAYS))}
+
 def create_course_color():
     """Generate unique colors for courses from the palette or random if needed"""
     for shade in VISUAL_PALETTE:
@@ -50,7 +96,7 @@ def create_time_periods():
 
 # Load data from Excel
 try:
-    data_frame = pd.read_excel('combined.xlsx', sheet_name='Sheet1')
+    data_frame = pd.read_excel('combined2.xlsx', sheet_name='Sheet1')
 except FileNotFoundError:
     print("Error: File 'combined.xlsx' not found in the current directory")
     exit()
@@ -64,13 +110,101 @@ def is_rest_period(period):
     lunch_rest = (time(12, 30) <= begin < time(14, 30))
     return morning_rest or lunch_rest
 
+def is_course_scheduled_simultaneously(schedule_grid, period, code_id):
+    """Check if the same course is scheduled in any other section at the same time"""
+    for day_schedule in schedule_grid.values():
+        if day_schedule[period]['code'] == code_id:
+            return True
+    return False
+
+def has_minimum_gap(schedule_grid, day_idx, start_period, code_id, min_gap=6):
+    """Check if there's enough gap between lectures of the same course"""
+    # Check backwards
+    for i in range(max(0, start_period - min_gap), start_period):
+        if schedule_grid[day_idx][i]['code'] == code_id:
+            return False
+            
+    # Check forwards
+    for i in range(start_period + 1, min(len(TIME_PERIODS), start_period + min_gap + 1)):
+        if schedule_grid[day_idx][i]['code'] == code_id:
+            return False
+            
+    return True
+
+def is_faculty_available(instructor, day_idx, start_period, num_blocks):
+    """Check if faculty member is available with improved name handling"""
+    global faculty_schedule
+    instructor = clean_faculty_name(instructor)
+    
+    if instructor == "TBA":
+        return True
+        
+    if instructor not in faculty_schedule:
+        faculty_schedule[instructor] = {day_idx: set() for day_idx in range(len(WEEKDAYS))}
+        
+    # Check if faculty is free for all required slots
+    for i in range(num_blocks):
+        if start_period + i in faculty_schedule[instructor][day_idx]:
+            return False
+    return True
+
+def mark_faculty_busy(instructor, day_idx, start_period, num_blocks):
+    """Mark faculty as busy with improved name handling"""
+    global faculty_schedule
+    instructor = clean_faculty_name(instructor)
+    
+    if instructor == "TBA":
+        return
+        
+    for i in range(num_blocks):
+        faculty_schedule[instructor][day_idx].add(start_period + i)
+
+def find_best_slot(schedule_grid, teacher_bookings, room_bookings, instructor, venue, num_blocks, day_idx, code_id):
+    """Find the best available time slot considering faculty conflicts"""
+    global TIME_PERIODS
+    best_slot = -1
+    min_conflicts = float('inf')
+    
+    for start_period in range(len(TIME_PERIODS) - num_blocks + 1):
+        conflicts = 0
+        is_available = True
+        
+        # Check basic availability
+        for i in range(num_blocks):
+            current_period = start_period + i
+            if (current_period in teacher_bookings[instructor][day_idx] or
+                current_period in room_bookings[venue][day_idx] or
+                schedule_grid[day_idx][current_period]['type'] is not None or
+                is_rest_period(TIME_PERIODS[current_period]) or
+                is_course_scheduled_simultaneously(schedule_grid, current_period, code_id) or
+                not is_faculty_available(instructor, day_idx, start_period, num_blocks)):
+                is_available = False
+                conflicts += 1
+                break
+        
+        # Check minimum gap requirement
+        if is_available and not has_minimum_gap(schedule_grid, day_idx, start_period, code_id):
+            is_available = False
+            conflicts += 2
+        
+        if is_available and conflicts < min_conflicts:
+            best_slot = start_period
+            min_conflicts = conflicts
+            
+        if min_conflicts == 0:  # Found perfect slot
+            break
+    
+    return best_slot
+
 def generate_all_schedules():
+    # Initialize faculty schedules at the start
+    initialize_faculty_schedule()
+    initialize_time_periods()
+    
     # Create output directories
     output_dir = os.path.join(os.path.dirname(__file__), 'output')
     html_dir = os.path.join(output_dir, 'html')
     os.makedirs(html_dir, exist_ok=True)
-    
-    TIME_PERIODS = create_time_periods()
     
     def is_adjacent_lecture(schedule_grid, day_idx, start_period, code_id):
         """Check if there's already a lecture of the same course in adjacent time slots"""
@@ -172,6 +306,7 @@ def generate_all_schedules():
                         
                         if is_available:
                             # Mark professor and lab classroom as busy
+                            mark_faculty_busy(instructor, day_idx, start_period, LAB_BLOCKS)
                             for i in range(LAB_BLOCKS):
                                 teacher_bookings[instructor][day_idx].add(start_period+i)
                                 room_bookings[lab_venue][day_idx].add(start_period+i)
@@ -218,21 +353,11 @@ def generate_all_schedules():
                     while not is_scheduled and try_count < 1000:
                         day_idx = random.randint(0, len(WEEKDAYS)-1)
                         if len(TIME_PERIODS) >= LECTURE_BLOCKS:
-                            start_period = random.randint(0, len(TIME_PERIODS)-LECTURE_BLOCKS)
+                            start_period = find_best_slot(schedule_grid, teacher_bookings, room_bookings, instructor, venue, LECTURE_BLOCKS, day_idx, code_id)
                             
-                            # Check if all required slots are free and not in break time
-                            is_available = True
-                            for i in range(LECTURE_BLOCKS):
-                                if (start_period+i in teacher_bookings[instructor][day_idx] or 
-                                    start_period+i in room_bookings[venue][day_idx] or
-                                    schedule_grid[day_idx][start_period+i]['type'] is not None or
-                                    is_rest_period(TIME_PERIODS[start_period+i]) or
-                                    is_adjacent_lecture(schedule_grid, day_idx, start_period, code_id)):
-                                    is_available = False
-                                    break
-                            
-                            if is_available:
+                            if start_period != -1:
                                 # Mark professor and classroom as busy
+                                mark_faculty_busy(instructor, day_idx, start_period, LECTURE_BLOCKS)
                                 for i in range(LECTURE_BLOCKS):
                                     teacher_bookings[instructor][day_idx].add(start_period+i)
                                     room_bookings[venue][day_idx].add(start_period+i)
@@ -269,6 +394,7 @@ def generate_all_schedules():
                                     
                             if is_available:
                                 # Mark professor and classroom as busy
+                                mark_faculty_busy(instructor, day_idx, start_period, TUTORIAL_BLOCKS)
                                 for i in range(TUTORIAL_BLOCKS):
                                     teacher_bookings[instructor][day_idx].add(start_period+i)
                                     room_bookings[venue][day_idx].add(start_period+i)
