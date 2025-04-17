@@ -11,6 +11,36 @@ LECTURE_BLOCKS = 3  # 1.5 hours = 3 slots (30 mins each)
 LAB_BLOCKS = 4      # 2 hours = 4 slots (30 mins each)
 TUTORIAL_BLOCKS = 2  # 1 hour = 2 slots (30 mins each)
 
+# Break slots configuration (30-minute slots between 12:30 to 2:00)
+LUNCH_START = time(12, 30)
+LUNCH_END = time(14, 0)
+BREAK_DURATION = 3  # Number of 30-minute slots for lunch break
+MORNING_BREAK_TIME = time(10, 30)  # Morning break remains fixed
+
+# Department-wise break slots (each gets 1.5 hours within the lunch window)
+DEPT_BREAK_SLOTS = {
+    'CSE': {
+        '2A': 0,  # 12:30-14:00
+        '2B': 1,  # 13:00-14:30
+        '4A': 0,
+        '4B': 1,
+        '6A': 2,  # 13:30-15:00
+        '6B': 2,
+        '8': 1
+    },
+    'DSAI': {
+        '2': 1,
+        '4': 2,
+        '6': 0,
+    },
+    'ECE': {
+        '2': 2,
+        '4': 0,
+        '6': 1,
+        '8': 0
+    }
+}
+
 # Color palette for different courses (pastel colors)
 VISUAL_PALETTE = [
     "FFD6E0", "FFEFCF", "D6FFCF", "CFFEFF", "D6CFFF", "FFCFF4", 
@@ -101,14 +131,38 @@ except FileNotFoundError:
     print("Error: File 'combined.xlsx' not found in the current directory")
     exit()
 
-def is_rest_period(period):
-    """Check if a time slot falls within break times"""
+def get_break_slot(dept, sem, section=None):
+    """Get the break slot offset for a department/semester/section"""
+    if dept not in DEPT_BREAK_SLOTS:
+        return 0
+        
+    sem_key = f"{sem}"
+    if section:
+        sem_key += section
+    
+    dept_breaks = DEPT_BREAK_SLOTS[dept]
+    return dept_breaks.get(sem_key, 0)
+
+def is_rest_period(period, dept=None, sem=None, section=None):
+    """Check if a time slot falls within break times with dynamic lunch breaks"""
     begin, end = period
+    
     # Morning break: 10:30-11:00
-    morning_rest = (time(10, 30) <= begin < time(11, 0))
-    # Lunch break: 12:30-14:30
-    lunch_rest = (time(12, 30) <= begin < time(14, 30))
-    return morning_rest or lunch_rest
+    if time(10, 30) <= begin < time(11, 0):
+        return True
+        
+    # Dynamic lunch break
+    if LUNCH_START <= begin < LUNCH_END:
+        # Get department's break slot offset (0, 1, or 2 representing 30-minute offsets)
+        break_offset = get_break_slot(dept, sem, section)
+        break_start = datetime.combine(datetime.today(), LUNCH_START) + timedelta(minutes=30 * break_offset)
+        break_end = break_start + timedelta(minutes=30 * BREAK_DURATION)
+        
+        # Check if current time falls within this department's break window
+        current_time = datetime.combine(datetime.today(), begin)
+        return break_start.time() <= begin < break_end.time()
+        
+    return False
 
 def is_course_scheduled_simultaneously(schedule_grid, period, code_id):
     """Check if the same course is scheduled in any other section at the same time"""
@@ -159,15 +213,25 @@ def mark_faculty_busy(instructor, day_idx, start_period, num_blocks):
     for i in range(num_blocks):
         faculty_schedule[instructor][day_idx].add(start_period + i)
 
-def find_best_slot(schedule_grid, teacher_bookings, room_bookings, instructor, venue, num_blocks, day_idx, code_id):
-    """Find the best available time slot considering faculty conflicts"""
+def is_near_break(period_idx, dept, sem, section):
+    """Check if a time slot is near a break period"""
+    # Check 2 slots before and after
+    for i in range(max(0, period_idx - 2), min(len(TIME_PERIODS), period_idx + 3)):
+        if is_rest_period(TIME_PERIODS[i], dept, sem, section):
+            return True
+    return False
+
+def find_best_slot(schedule_grid, teacher_bookings, room_bookings, instructor, venue, num_blocks, day_idx, code_id, dept=None, sem=None, section=None, session_type='LEC'):
+    """Find the best available time slot considering proximity to breaks"""
     global TIME_PERIODS
     best_slot = -1
     min_conflicts = float('inf')
+    max_break_proximity = -1  # Track how close we are to breaks
     
     for start_period in range(len(TIME_PERIODS) - num_blocks + 1):
         conflicts = 0
         is_available = True
+        break_proximity = 0  # Higher value means closer to breaks
         
         # Check basic availability
         for i in range(num_blocks):
@@ -175,7 +239,7 @@ def find_best_slot(schedule_grid, teacher_bookings, room_bookings, instructor, v
             if (current_period in teacher_bookings[instructor][day_idx] or
                 current_period in room_bookings[venue][day_idx] or
                 schedule_grid[day_idx][current_period]['type'] is not None or
-                is_rest_period(TIME_PERIODS[current_period]) or
+                is_rest_period(TIME_PERIODS[current_period], dept, sem, section) or
                 is_course_scheduled_simultaneously(schedule_grid, current_period, code_id) or
                 not is_faculty_available(instructor, day_idx, start_period, num_blocks)):
                 is_available = False
@@ -187,11 +251,24 @@ def find_best_slot(schedule_grid, teacher_bookings, room_bookings, instructor, v
             is_available = False
             conflicts += 2
         
-        if is_available and conflicts < min_conflicts:
+        # For lectures, prioritize slots near breaks
+        if is_available and session_type == 'LEC':
+            # Check if any slot in the block is near a break
+            for i in range(num_blocks):
+                if is_near_break(start_period + i, dept, sem, section):
+                    break_proximity += 1
+            
+            # If this slot has better break proximity or same proximity but fewer conflicts
+            if (break_proximity > max_break_proximity or 
+                (break_proximity == max_break_proximity and conflicts < min_conflicts)):
+                best_slot = start_period
+                min_conflicts = conflicts
+                max_break_proximity = break_proximity
+        elif is_available and conflicts < min_conflicts:
             best_slot = start_period
             min_conflicts = conflicts
             
-        if min_conflicts == 0:  # Found perfect slot
+        if min_conflicts == 0 and max_break_proximity > 0:  # Found perfect slot near break
             break
     
     return best_slot
@@ -353,7 +430,11 @@ def generate_all_schedules():
                     while not is_scheduled and try_count < 1000:
                         day_idx = random.randint(0, len(WEEKDAYS)-1)
                         if len(TIME_PERIODS) >= LECTURE_BLOCKS:
-                            start_period = find_best_slot(schedule_grid, teacher_bookings, room_bookings, instructor, venue, LECTURE_BLOCKS, day_idx, code_id)
+                            start_period = find_best_slot(
+                                schedule_grid, teacher_bookings, room_bookings,
+                                instructor, venue, LECTURE_BLOCKS, day_idx, code_id,
+                                dept, numeric_sem, section, 'LEC'
+                            )
                             
                             if start_period != -1:
                                 # Mark professor and classroom as busy
@@ -428,16 +509,20 @@ def generate_all_schedules():
                 skip_cells = 0
                 break_count = 0
                 
+                # Modified rest period check to include department info
+                def is_break_for_dept(period):
+                    return is_rest_period(period, dept, numeric_sem, section)
+                
                 for period_idx in range(len(TIME_PERIODS)):
                     if skip_cells > 0:
                         skip_cells -= 1
                         continue
                     
                     # Count consecutive break periods
-                    if is_rest_period(TIME_PERIODS[period_idx]):
+                    if is_break_for_dept(TIME_PERIODS[period_idx]):
                         break_count = 1
                         next_idx = period_idx + 1
-                        while next_idx < len(TIME_PERIODS) and is_rest_period(TIME_PERIODS[next_idx]):
+                        while next_idx < len(TIME_PERIODS) and is_break_for_dept(TIME_PERIODS[next_idx]):
                             break_count += 1
                             next_idx += 1
                         dept_content += f'<td colspan="{break_count}" class="break">BREAK</td>'
