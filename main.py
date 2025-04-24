@@ -84,7 +84,7 @@ def initialize_faculty_schedule():
     
     # Read faculty data
     faculty_df = pd.read_csv('faculty.csv')
-    combined_df = pd.read_excel('data.xlsx')
+    combined_df = pd.read_excel('combined2.xlsx')
     
     # Clean and standardize faculty names
     all_faculty = set(clean_faculty_name(name) for name in faculty_df['Faculty Name'].unique())

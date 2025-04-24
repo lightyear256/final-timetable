@@ -1,164 +1,221 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Class Timetable</title>
     <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f0f2f5;
+      }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .timetable-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .timetable-header h2 {
+        color: #1a237e;
+        margin: 0;
+        font-size: 24px;
+      }
+      .timestamp {
+        color: #666;
+        font-size: 0.9em;
+        margin-top: 5px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #e0e0e0;
+        padding: 12px;
+        text-align: center;
+      }
+      th {
+        background: #1a237e;
+        color: white;
+        font-weight: 500;
+      }
+      .break {
+        background: #eceff1;
+        color: #546e7a;
+        font-weight: bold;
+      }
+      .course-block {
+        padding: 10px;
+        border-radius: 6px;
+        margin: 5px;
+        transition: transform 0.2s;
+      }
+      .course-block:hover {
+        transform: scale(1.02);
+      }
+      .legend {
+        margin-top: 40px;
+        padding: 20px;
+        background: #f5f5f5;
+        border-radius: 8px;
+      }
+      .legend h3 {
+        color: #1a237e;
+        margin-top: 0;
+      }
+      .legend-color {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        border-radius: 4px;
+      }
+      .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #3f51b5;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      @media print {
         body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f0f2f5;
+          background: white;
         }
         .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .timetable-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .timetable-header h2 {
-            color: #1a237e;
-            margin: 0;
-            font-size: 24px;
-        }
-        .timestamp {
-            color: #666;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #e0e0e0;
-            padding: 12px;
-            text-align: center;
-        }
-        th {
-            background: #1a237e;
-            color: white;
-            font-weight: 500;
-        }
-        .break {
-            background: #eceff1;
-            color: #546e7a;
-            font-weight: bold;
-        }
-        .course-block {
-            padding: 10px;
-            border-radius: 6px;
-            margin: 5px;
-            transition: transform 0.2s;
-        }
-        .course-block:hover {
-            transform: scale(1.02);
-        }
-        .legend {
-            margin-top: 40px;
-            padding: 20px;
-            background: #f5f5f5;
-            border-radius: 8px;
-        }
-        .legend h3 {
-            color: #1a237e;
-            margin-top: 0;
-        }
-        .legend-color {
-            width: 30px;
-            height: 30px;
-            display: inline-block;
-            border-radius: 4px;
+          box-shadow: none;
         }
         .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #3f51b5;
-            text-decoration: none;
-            font-weight: 500;
+          display: none;
         }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        @media print {
-            body {
-                background: white;
-            }
-            .container {
-                box-shadow: none;
-            }
-            .back-link {
-                display: none;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <a href="index.html" class="back-link">← Back to Index</a>
-        
+      <a href="index.html" class="back-link">← Back to Index</a>
+      
                 <div class="timetable-header">
                     <h2>CSE Department - Semester 6</h2>
-                    <p class="timestamp">Generated: 11-04-2025 03:08 PM</p>
+                    <p class="timestamp">Generated: 25-04-2025 12:44 AM</p>
                 </div>
                 <table>
             <tr><th>Day</th><th>09:00 AM<br>to<br>09:30 AM</th><th>09:30 AM<br>to<br>10:00 AM</th><th>10:00 AM<br>to<br>10:30 AM</th><th>10:30 AM<br>to<br>11:00 AM</th><th>11:00 AM<br>to<br>11:30 AM</th><th>11:30 AM<br>to<br>12:00 PM</th><th>12:00 PM<br>to<br>12:30 PM</th><th>12:30 PM<br>to<br>01:00 PM</th><th>01:00 PM<br>to<br>01:30 PM</th><th>01:30 PM<br>to<br>02:00 PM</th><th>02:00 PM<br>to<br>02:30 PM</th><th>02:30 PM<br>to<br>03:00 PM</th><th>03:00 PM<br>to<br>03:30 PM</th><th>03:30 PM<br>to<br>04:00 PM</th><th>04:00 PM<br>to<br>04:30 PM</th><th>04:30 PM<br>to<br>05:00 PM</th><th>05:00 PM<br>to<br>05:30 PM</th><th>05:30 PM<br>to<br>06:00 PM</th><th>06:00 PM<br>to<br>06:30 PM</th></tr>
-<tr><td><b>Monday</b></td><td colspan="3" class="timetable-cell">
-                                <div class="course-block" style="background-color: #CFFEFF">
-                                    <strong>B3 LEC</strong><br>
-                                    Room: -/-/C303/-/C002<br>
-                                    Mr. Jagadeesh K (Dr Sibasankar Padhy)/Dr. Somen/Dr. Vivekraj V K/Dr. Deepak KT/Dr Malay
-                                </div>
-                            </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+<tr><td><b>Monday</b></td><td></td><td></td><td colspan="2" class="timetable-cell">
                                 <div class="course-block" style="background-color: #D6FFCF">
-                                    <strong>B2 LEC</strong><br>
+                                    <strong>B2 TUT</strong><br>
                                     Room: C302/C303/C305/C304/online/C204<br>
-                                    Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Pavan/Dr. Aswath B/Dr. Manish M (Dr. Aswath)/Dr. Sandesh P
+                                    Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Sandesh P
                                 </div>
-                            </td><td colspan="4" class="break">BREAK</td><td colspan="2" class="timetable-cell">
-                                <div class="course-block" style="background-color: #CFFEFF">
-                                    <strong>B3 TUT</strong><br>
-                                    Room: -/-/C303/-/C002<br>
-                                    Mr. Jagadeesh K (Dr Sibasankar Padhy)/Dr. Somen/Dr. Vivekraj V K/Dr. Deepak KT/Dr Malay
+                            </td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFEFCF">
+                                    <strong>B1 LEC</strong><br>
+                                    Room: C302/C004/C303/-/C305<br>
+                                    Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar
                                 </div>
-                            </td><td colspan="4" class="timetable-cell">
+                            </td><td colspan="3" class="break">BREAK</td><td colspan="4" class="timetable-cell">
                                 <div class="course-block" style="background-color: #FFD6E0">
                                     <strong>CS307 LAB</strong><br>
-                                    Room: C303<br>
-                                    Dr. Krishnendu
+                                    Room: L306/L307<br>
+                                    Dr. Girish GN
                                 </div>
-                            </td><td colspan="2" class="timetable-cell">
+                            </td><td></td><td></td><td colspan="2" class="timetable-cell">
                                 <div class="course-block" style="background-color: #FFEFCF">
                                     <strong>B1 TUT</strong><br>
                                     Room: C302/C004/C303/-/C305<br>
-                                    Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar/Prof. SRM Prasanna
+                                    Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar
                                 </div>
-                            </td></tr>
+                            </td><td></td></tr>
 <tr><td><b>Tuesday</b></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFEFCF">
+                                    <strong>B1 LEC</strong><br>
+                                    Room: C302/C004/C303/-/C305<br>
+                                    Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar
+                                </div>
+                            </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>B3 LEC</strong><br>
+                                    Room: -/-/C303/-/C002<br>
+                                    Dr. Somen/Dr. Vivekraj V K/Dr. Deepak KT/Dr Malay
+                                </div>
+                            </td><td colspan="3" class="break">BREAK</td><td colspan="3" class="timetable-cell">
                                 <div class="course-block" style="background-color: #D6FFCF">
                                     <strong>B2 LEC</strong><br>
                                     Room: C302/C303/C305/C304/online/C204<br>
-                                    Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Pavan/Dr. Aswath B/Dr. Manish M (Dr. Aswath)/Dr. Sandesh P
+                                    Dr. Pavan
+                                </div>
+                            </td><td></td><td></td><td colspan="2" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>B3 TUT</strong><br>
+                                    Room: -/-/C303/-/C002<br>
+                                    Dr. Somen/Dr. Vivekraj V K/Dr. Deepak KT/Dr Malay
+                                </div>
+                            </td><td></td><td></td></tr>
+<tr><td><b>Wednesday</b></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFD6E0">
+                                    <strong>CS307 LEC</strong><br>
+                                    Room: C304<br>
+                                    Dr. Girish GN
                                 </div>
                             </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
-                                <div class="course-block" style="background-color: #FFEFCF">
-                                    <strong>B1 LEC</strong><br>
-                                    Room: C302/C004/C303/-/C305<br>
-                                    Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar/Prof. SRM Prasanna
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>B2 LEC</strong><br>
+                                    Room: C302/C303/C305/C304/online/C204<br>
+                                    Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Sandesh P
                                 </div>
-                            </td><td colspan="4" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                            </td><td colspan="3" class="break">BREAK</td><td colspan="3" class="timetable-cell">
                                 <div class="course-block" style="background-color: #FFEFCF">
                                     <strong>B1 LEC</strong><br>
                                     Room: C302/C004/C303/-/C305<br>
-                                    Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar/Prof. SRM Prasanna
+                                    Prof. SRM Prasanna
+                                </div>
+                            </td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>B2 LEC</strong><br>
+                                    Room: C302/C303/C305/C304/online/C204<br>
+                                    Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Sandesh P
+                                </div>
+                            </td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>B3 LEC</strong><br>
+                                    Room: -/-/C303/-/C002<br>
+                                    Mr. Jagadeesh K (Dr Sibasankar Padhy)
+                                </div>
+                            </td></tr>
+<tr><td><b>Thursday</b></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #CFFEFF">
+                                    <strong>B3 LEC</strong><br>
+                                    Room: -/-/C303/-/C002<br>
+                                    Dr. Somen/Dr. Vivekraj V K/Dr. Deepak KT/Dr Malay
+                                </div>
+                            </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6CFFF">
+                                    <strong>B4 LEC</strong><br>
+                                    Room: C002/C002/C303/C304/C305<br>
+                                    Dr. Sunil CK/Dr. Ramesh Athe/Dr. Girish GN/Dr. Sunil Kumar PV
+                                </div>
+                            </td><td colspan="3" class="break">BREAK</td><td></td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #FFEFCF">
+                                    <strong>B1 LEC</strong><br>
+                                    Room: C302/C004/C303/-/C305<br>
+                                    Prof. SRM Prasanna
+                                </div>
+                            </td><td colspan="3" class="timetable-cell">
+                                <div class="course-block" style="background-color: #D6FFCF">
+                                    <strong>B2 LEC</strong><br>
+                                    Room: C302/C303/C305/C304/online/C204<br>
+                                    Dr. Pavan
                                 </div>
                             </td><td colspan="2" class="timetable-cell">
                                 <div class="course-block" style="background-color: #D6CFFF">
@@ -166,101 +223,77 @@
                                     Room: C002/C002/C303/C304/C305<br>
                                     Dr. Sunil CK/Dr. Ramesh Athe/Dr. Girish GN/Dr. Sunil Kumar PV
                                 </div>
-                            </td><td colspan="3" class="timetable-cell">
-                                <div class="course-block" style="background-color: #D6CFFF">
-                                    <strong>B4 LEC</strong><br>
-                                    Room: C002/C002/C303/C304/C305<br>
-                                    Dr. Sunil CK/Dr. Ramesh Athe/Dr. Girish GN/Dr. Sunil Kumar PV
-                                </div>
                             </td></tr>
-<tr><td><b>Wednesday</b></td><td colspan="3" class="timetable-cell">
-                                <div class="course-block" style="background-color: #D6FFCF">
-                                    <strong>B2 LEC</strong><br>
-                                    Room: C302/C303/C305/C304/online/C204<br>
-                                    Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Pavan/Dr. Aswath B/Dr. Manish M (Dr. Aswath)/Dr. Sandesh P
-                                </div>
-                            </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
-                                <div class="course-block" style="background-color: #FFEFCF">
-                                    <strong>B1 LEC</strong><br>
-                                    Room: C302/C004/C303/-/C305<br>
-                                    Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar/Prof. SRM Prasanna
-                                </div>
-                            </td><td colspan="4" class="break">BREAK</td><td colspan="2" class="timetable-cell">
-                                <div class="course-block" style="background-color: #FFEFCF">
-                                    <strong>B1 TUT</strong><br>
-                                    Room: C302/C004/C303/-/C305<br>
-                                    Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar/Prof. SRM Prasanna
-                                </div>
-                            </td><td colspan="2" class="timetable-cell">
-                                <div class="course-block" style="background-color: #D6FFCF">
-                                    <strong>B2 TUT</strong><br>
-                                    Room: C302/C303/C305/C304/online/C204<br>
-                                    Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Pavan/Dr. Aswath B/Dr. Manish M (Dr. Aswath)/Dr. Sandesh P
-                                </div>
-                            </td><td></td><td colspan="2" class="timetable-cell">
-                                <div class="course-block" style="background-color: #CFFEFF">
-                                    <strong>B3 TUT</strong><br>
-                                    Room: -/-/C303/-/C002<br>
-                                    Mr. Jagadeesh K (Dr Sibasankar Padhy)/Dr. Somen/Dr. Vivekraj V K/Dr. Deepak KT/Dr Malay
-                                </div>
-                            </td><td></td></tr>
-<tr><td><b>Thursday</b></td><td colspan="3" class="timetable-cell">
+<tr><td><b>Friday</b></td><td colspan="3" class="timetable-cell">
                                 <div class="course-block" style="background-color: #D6CFFF">
                                     <strong>B4 LEC</strong><br>
                                     Room: C002/C002/C303/C304/C305<br>
                                     Dr. Sunil CK/Dr. Ramesh Athe/Dr. Girish GN/Dr. Sunil Kumar PV
                                 </div>
                             </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
-                                <div class="course-block" style="background-color: #D6FFCF">
-                                    <strong>B2 LEC</strong><br>
-                                    Room: C302/C303/C305/C304/online/C204<br>
-                                    Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Pavan/Dr. Aswath B/Dr. Manish M (Dr. Aswath)/Dr. Sandesh P
-                                </div>
-                            </td><td colspan="4" class="break">BREAK</td><td colspan="3" class="timetable-cell">
-                                <div class="course-block" style="background-color: #D6FFCF">
-                                    <strong>B2 LEC</strong><br>
-                                    Room: C302/C303/C305/C304/online/C204<br>
-                                    Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Pavan/Dr. Aswath B/Dr. Manish M (Dr. Aswath)/Dr. Sandesh P
-                                </div>
-                            </td><td></td><td colspan="4" class="timetable-cell">
                                 <div class="course-block" style="background-color: #FFD6E0">
-                                    <strong>CS307 LAB</strong><br>
+                                    <strong>CS307 LEC</strong><br>
                                     Room: C304<br>
                                     Dr. Girish GN
                                 </div>
-                            </td></tr>
-<tr><td><b>Friday</b></td><td colspan="3" class="timetable-cell">
+                            </td><td colspan="3" class="break">BREAK</td><td colspan="3" class="timetable-cell">
                                 <div class="course-block" style="background-color: #CFFEFF">
                                     <strong>B3 LEC</strong><br>
                                     Room: -/-/C303/-/C002<br>
-                                    Mr. Jagadeesh K (Dr Sibasankar Padhy)/Dr. Somen/Dr. Vivekraj V K/Dr. Deepak KT/Dr Malay
+                                    Mr. Jagadeesh K (Dr Sibasankar Padhy)
                                 </div>
-                            </td><td colspan="1" class="break">BREAK</td><td colspan="3" class="timetable-cell">
-                                <div class="course-block" style="background-color: #FFEFCF">
-                                    <strong>B1 LEC</strong><br>
-                                    Room: C302/C004/C303/-/C305<br>
-                                    Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar/Prof. SRM Prasanna
-                                </div>
-                            </td><td colspan="4" class="break">BREAK</td><td colspan="3" class="timetable-cell">
-                                <div class="course-block" style="background-color: #D6CFFF">
-                                    <strong>B4 LEC</strong><br>
-                                    Room: C002/C002/C303/C304/C305<br>
-                                    Dr. Sunil CK/Dr. Ramesh Athe/Dr. Girish GN/Dr. Sunil Kumar PV
-                                </div>
-                            </td><td colspan="2" class="timetable-cell">
+                            </td><td></td><td></td><td colspan="3" class="timetable-cell">
                                 <div class="course-block" style="background-color: #D6FFCF">
-                                    <strong>B2 TUT</strong><br>
+                                    <strong>B2 LEC</strong><br>
                                     Room: C302/C303/C305/C304/online/C204<br>
-                                    Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Pavan/Dr. Aswath B/Dr. Manish M (Dr. Aswath)/Dr. Sandesh P
+                                    Dr. Aswath B
                                 </div>
-                            </td><td colspan="3" class="timetable-cell">
-                                <div class="course-block" style="background-color: #CFFEFF">
-                                    <strong>B3 LEC</strong><br>
-                                    Room: -/-/C303/-/C002<br>
-                                    Mr. Jagadeesh K (Dr Sibasankar Padhy)/Dr. Somen/Dr. Vivekraj V K/Dr. Deepak KT/Dr Malay
-                                </div>
-                            </td></tr>
+                            </td><td></td></tr>
 </table>
+<div class="legend"><h3>LTPSC Information</h3>
+<table>
+<tr><th>Course Code</th><th>L</th><th>T</th><th>P</th><th>S</th><th>C</th></tr>
+
+                <tr>
+                    <td><strong>CS307</strong></td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td><strong>B1</strong></td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td><strong>B2</strong></td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td><strong>B3</strong></td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td><strong>B4</strong></td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>4</td>
+                </tr></table></div>
 <div class="legend"><h3>Course Legend</h3>
 <table>
 <tr><th>Course Code</th><th>Color</th><th>Course Name</th><th>Faculty</th></tr>
@@ -274,34 +307,28 @@
                 <tr>
                     <td><strong>B1</strong></td>
                     <td><div class="legend-color" style="background-color: #FFEFCF"></div></td>
-                    <td>Deep Learning for Computer Vision/Large Languange Models/Natural Language Processing/Deep Speech Processing/CMOS RF Circuit Design</td>
-                    <td>Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar/Prof. SRM Prasanna</td>
+                    <td>Deep Learning for Computer Vision/Large Languange Models/Natural Language ProcessingCMOS RF Circuit Design</td>
+                    <td>Chinmayanand/Dr. Sunil S/Dr. Krishnendu/Dr. Pankaj Kumar and Dr. Rajesh Kumar</td>
                 </tr>
                 <tr>
                     <td><strong>B2</strong></td>
                     <td><div class="legend-color" style="background-color: #D6FFCF"></div></td>
-                    <td>Blockchain Technology/Introduction to 5G Network/Model Checking/Quantum Communication/Quantum HPC and AI/Design Thinking and Innovation</td>
-                    <td>Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Pavan/Dr. Aswath B/Dr. Manish M (Dr. Aswath)/Dr. Sandesh P</td>
+                    <td>Blockchain Technology/Introduction to 5G Network/Design Thinking and Innovation</td>
+                    <td>Dr. Rajendra H/Dr. Jagadeesha R Bhat/Dr. Sandesh P</td>
                 </tr>
                 <tr>
                     <td><strong>B3</strong></td>
                     <td><div class="legend-color" style="background-color: #CFFEFF"></div></td>
-                    <td>Automotive Embedded and Multimedia Systems/Microwave Engineering/Computer Graphics/Machine learning/Virtualization and Cloud Computing</td>
-                    <td>Mr. Jagadeesh K (Dr Sibasankar Padhy)/Dr. Somen/Dr. Vivekraj V K/Dr. Deepak KT/Dr Malay</td>
+                    <td>Microwave Engineering/Computer Graphics/Machine learning/Virtualization and Cloud Computing</td>
+                    <td>Dr. Somen/Dr. Vivekraj V K/Dr. Deepak KT/Dr Malay</td>
                 </tr>
                 <tr>
                     <td><strong>B4</strong></td>
                     <td><div class="legend-color" style="background-color: #D6CFFF"></div></td>
-                    <td>Data Analytics and Visualization/Statistics for Health Technology/Medical Image Analysis/Bioinformatics</td>
+                    <td>Data Analytics and Visualization/Statistics for Health Technology/Bioinformatics</td>
                     <td>Dr. Sunil CK/Dr. Ramesh Athe/Dr. Girish GN/Dr. Sunil Kumar PV</td>
-                </tr>
-                <tr>
-                    <td><strong>Mini Project 1</strong></td>
-                    <td><div class="legend-color" style="background-color: #FFCFF4"></div></td>
-                    <td>Mini Project 1</td>
-                    <td>Pramod Yelmewad and Animesh Roy</td>
                 </tr></table></div>
 
     </div>
-</body>
+  </body>
 </html>
