@@ -84,7 +84,7 @@ def initialize_faculty_schedule():
     
     # Read faculty data
     faculty_df = pd.read_csv('faculty.csv')
-    combined_df = pd.read_excel('combined2.xlsx')
+    combined_df = pd.read_excel('data.xlsx')
     
     # Clean and standardize faculty names
     all_faculty = set(clean_faculty_name(name) for name in faculty_df['Faculty Name'].unique())
@@ -564,7 +564,11 @@ def generate_all_schedules():
             dept_content += '<tr><th>Course Code</th><th>L</th><th>T</th><th>P</th><th>S</th><th>C</th></tr>\n'
             
             for code_id in subject_colors.keys():
-                course_info = section_subjects[section_subjects['Course Code'] == code_id].iloc[0]
+                course_rows = section_subjects[section_subjects['Course Code'] == code_id]
+                if course_rows.empty:
+                    continue
+                    
+                course_info = course_rows.iloc[0]
                 l_hours = int(course_info['L']) if pd.notna(course_info['L']) else 0
                 t_hours = int(course_info['T']) if pd.notna(course_info['T']) else 0
                 p_hours = int(course_info['P']) if pd.notna(course_info['P']) else 0
